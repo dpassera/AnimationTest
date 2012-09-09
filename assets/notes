@@ -11,4 +11,6 @@ Milestones
 	- server pushes when coin collection milestones are hit, per user and total ("John Doe has collected 100 coins", "A total of 40,000 coins have been collected") 
 	
 Next
-[w] game loop
+[w] launch game activity
+[ ] build game loop
+[ ] run game loop
