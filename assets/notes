@@ -1,0 +1,14 @@
+Milestones
+[w] game loop
+[p] mario sprite with run cycle
+[ ] mario jump animation on screen tap
+[ ] dynamically created and destroyed block sprite scrolling from right to left, infinite loop
+[ ] register event when mario jump animation hits block
+[ ] block coin animation
+[ ] randomly timed creation of blocks, allows for multiple blocks on-screen
+[ ] GCM push test, something simple to test
+	- server pushes message of the day
+	- server pushes when coin collection milestones are hit, per user and total ("John Doe has collected 100 coins", "A total of 40,000 coins have been collected") 
+	
+Next
+[w] game loop
