@@ -12,7 +12,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name=".MainLayoutActivity"
+            android:name=".MainActivity"
             android:label="@string/title_activity_main_layout" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -20,6 +20,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".GameActivity"></activity>
     </application>
 
 </manifest>
