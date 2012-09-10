@@ -1,6 +1,8 @@
 package com.monkeydriver.animationtest.animations;
 
 import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Paint;
 import android.graphics.Rect;
 
 public class MarioAnimation {
@@ -31,7 +33,7 @@ public class MarioAnimation {
 		_x = x;
 		_currentFrame = 0;
 		_frameNr = frameCount;
-		_spriteWidth = bitmap.getWidth();
+		_spriteWidth = bitmap.getWidth() / frameCount;
 		_spriteHeight = bitmap.getHeight();
 		_sourceRect = new Rect(0, 0, _spriteWidth, _spriteHeight);
 		_framePeriod = 1000 / fps;
@@ -52,6 +54,17 @@ public class MarioAnimation {
 		// define the rectangle to cut out sprite
 		_sourceRect.left = _currentFrame * _spriteWidth;
 		_sourceRect.right = _sourceRect.left + _spriteWidth;
+	}
+	
+	public void draw(Canvas canvas) {
+		// where to draw the sprite
+		Rect destRect = new Rect(_x, _y, _x+_spriteWidth, _y+_spriteHeight);
+		canvas.drawBitmap(_bitmap, _sourceRect, destRect, null);
+		canvas.drawBitmap(_bitmap, 20, 150, null);
+		
+		Paint paint = new Paint();
+		paint.setARGB(50, 0, 255, 0);
+		canvas.drawRect(20 + (_currentFrame * destRect.width()), 150, 20 + (_currentFrame * destRect.width()) + destRect.width(), 150 + destRect.height(),  paint);
 	}
 	
 }

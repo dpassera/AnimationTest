@@ -1,9 +1,14 @@
 package com.monkeydriver.animationtest.customviews;
 
 import com.monkeydriver.animationtest.MainThread;
+import com.monkeydriver.animationtest.R;
+import com.monkeydriver.animationtest.animations.MarioAnimation;
 
 import android.content.Context;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
@@ -20,12 +25,21 @@ public class GameSurfaceView extends SurfaceView implements SurfaceHolder.Callba
 	
 	private static final String LOG_TAG = "log_GameSurfaceView";
 	
+	public String _avgFps;
+	
 	private MainThread _thread;
+	private MarioAnimation _mario;
 
 	public GameSurfaceView(Context context) {
 		super(context);
 		// add callback to surface holder to intercept events
 		getHolder().addCallback(this);
+		
+		// create mario and load bitmap
+		_mario = new MarioAnimation(BitmapFactory.decodeResource(getResources(), R.drawable.mario_walk),
+																0, 0,		// initial position
+																100,100,	// width and height of sprite
+																3, 3);		// FPS and number of frames in animation
 		
 		// create the game loop thread
 		_thread = new MainThread(getHolder(), this);
@@ -69,12 +83,38 @@ public class GameSurfaceView extends SurfaceView implements SurfaceHolder.Callba
 	public boolean onTouchEvent(MotionEvent event) {
 		Log.d(LOG_TAG, "@ event.getAction() = " + event.getAction());
 		
+		//TODO: handle touch
+		
 		return super.onTouchEvent(event);
 	}
 	
 	@Override
 	protected void onDraw(Canvas canvas) {
 		
+	}
+	
+	public void render(Canvas canvas) {
+		canvas.drawColor(Color.BLACK);
+		_mario.draw(canvas);
+		
+		displayFps(canvas, _avgFps);
+	}
+	
+	/**
+	 * This is the game update method. It iterates through all the objects
+	 * and calls their update method if they have one or calls specific
+	 * engine's update method.
+	 */
+	public void update() {
+		_mario.update(System.currentTimeMillis());
+	}
+	
+	private void displayFps(Canvas canvas, String fps) {
+		if(canvas != null && fps != null) {
+			Paint paint = new Paint();
+			paint.setARGB(255, 255, 255, 255);
+			canvas.drawText(fps, this.getWidth()-50, 20, paint);
+		}
 	}
 
 }
