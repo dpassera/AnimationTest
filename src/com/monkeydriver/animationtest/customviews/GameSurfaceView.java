@@ -2,7 +2,8 @@ package com.monkeydriver.animationtest.customviews;
 
 import com.monkeydriver.animationtest.MainThread;
 import com.monkeydriver.animationtest.R;
-import com.monkeydriver.animationtest.animations.MarioAnimation;
+import com.monkeydriver.animationtest.animations.MonkeyAnimation;
+import com.monkeydriver.animationtest.globals.Globals;
 
 import android.content.Context;
 import android.graphics.BitmapFactory;
@@ -28,7 +29,7 @@ public class GameSurfaceView extends SurfaceView implements SurfaceHolder.Callba
 	public String _avgFps;
 	
 	private MainThread _thread;
-	private MarioAnimation _mario;
+	private MonkeyAnimation _monkey;
 
 	public GameSurfaceView(Context context) {
 		super(context);
@@ -36,10 +37,12 @@ public class GameSurfaceView extends SurfaceView implements SurfaceHolder.Callba
 		getHolder().addCallback(this);
 		
 		// create mario and load bitmap
-		_mario = new MarioAnimation(BitmapFactory.decodeResource(getResources(), R.drawable.mario_walk),
+		_monkey = new MonkeyAnimation(BitmapFactory.decodeResource(getResources(), R.drawable.md_run),
 																0, 0,		// initial position
-																100,100,	// width and height of sprite
-																3, 3);		// FPS and number of frames in animation
+																Globals.MONKEY_SPRITE_W,
+																Globals.MONKEY_SPRITE_H,	// width and height of sprite
+																Globals.MONKEY_ANI_WALK_FPS,
+																Globals.MONKEY_ANI_WALK_FRAMES);		// FPS and number of frames in animation
 		
 		// create the game loop thread
 		_thread = new MainThread(getHolder(), this);
@@ -95,7 +98,7 @@ public class GameSurfaceView extends SurfaceView implements SurfaceHolder.Callba
 	
 	public void render(Canvas canvas) {
 		canvas.drawColor(Color.BLACK);
-		_mario.draw(canvas);
+		_monkey.draw(canvas);
 		
 		displayFps(canvas, _avgFps);
 	}
@@ -106,7 +109,7 @@ public class GameSurfaceView extends SurfaceView implements SurfaceHolder.Callba
 	 * engine's update method.
 	 */
 	public void update() {
-		_mario.update(System.currentTimeMillis());
+		_monkey.update(System.currentTimeMillis());
 	}
 	
 	private void displayFps(Canvas canvas, String fps) {

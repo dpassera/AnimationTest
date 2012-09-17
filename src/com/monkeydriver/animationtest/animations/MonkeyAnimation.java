@@ -1,13 +1,16 @@
 package com.monkeydriver.animationtest.animations;
 
+import com.monkeydriver.animationtest.globals.Globals;
+
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Rect;
+import android.util.Log;
 
-public class MarioAnimation {
+public class MonkeyAnimation {
 
-	private static final String LOG_TAG = "log_MarioAnimation";
+	private static final String LOG_TAG = "log_MonkeyAnimation";
 	
 	private Bitmap _bitmap;			// the animation sequence
 	private Rect _sourceRect;		// the rectangle to be drawn from the animation bitmap
@@ -22,7 +25,7 @@ public class MarioAnimation {
 	private int _x;					// the X coordinate of the object (top left of the image)
 	private int _y;					// the Y coordinate of the object (top left of the image)
 	
-	public MarioAnimation(Bitmap bitmap,
+	public MonkeyAnimation(Bitmap bitmap,
 							int x,
 							int y,
 							int width,

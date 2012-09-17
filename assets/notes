@@ -1,6 +1,9 @@
 Milestones
-[w] game loop
-[p] mario sprite with run cycle
+[c] game loop
+[w] mario sprite with run cycle
+	[c] repeat frame 2 as frame 4
+	[w] move values to globals
+	[w] recalculate frame locations based on new sprite sheet
 [ ] mario jump animation on screen tap
 [ ] dynamically created and destroyed block sprite scrolling from right to left, infinite loop
 [ ] register event when mario jump animation hits block
@@ -11,6 +14,17 @@ Milestones
 	- server pushes when coin collection milestones are hit, per user and total ("John Doe has collected 100 coins", "A total of 40,000 coins have been collected") 
 	
 Next
-[w] launch game activity
-[ ] build game loop
-[ ] run game loop
+
+
+
+
+=======
+
+
+
+
+[ GameActivity ]
+|
+[ GameSurfaceView ]
+|-[ MarioAnimation ]
+|-[ MainThread ]
